@@ -1,4 +1,4 @@
-class Api::V1::TokensController < ActionController::API
+class Api::V1::TokensController < ApplicationController
   def create
     @user = User.find_by_email(user_params[:email])
     if @user&.authenticate(user_params[:password])

@@ -10,8 +10,8 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     json_response = JSON.parse(response.body)
-    assert_equal @product.id, json_response["id"]
-    assert_equal @product.title, json_response["title"]
+    assert_equal @product.id.to_s, json_response["data"]["id"]
+    assert_equal @product.title, json_response["data"]["attributes"]["title"]
   end
 
   test "should index products" do

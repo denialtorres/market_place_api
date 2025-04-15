@@ -4,7 +4,8 @@ class Api::V1::UsersController < ApplicationController
   # GET /users/:id
   def show
     user = User.find(params[:id])
-    render json: UserSerializer.new(user).serializable_hash.to_json
+    options = { include: [ :products ] }
+    render json: UserSerializer.new(user, options).serializable_hash.to_json
   end
 
   # POST /users

@@ -11,7 +11,7 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 
     # Test to ensure response contains the correct email
     json_response = JSON.parse(response.body)
-    assert_equal @user.email, json_response["email"]
+    assert_equal @user.email, json_response["data"]["attributes"]["email"]
   end
 
   test "should create user" do
@@ -21,7 +21,7 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :created
     json_response = JSON.parse(response.body)
-    assert_equal "new_user@example.com", json_response["email"]
+    assert_equal "new_user@example.com", json_response["data"]["attributes"]["email"]
   end
 
   test "should not create user with taken email" do
@@ -40,7 +40,7 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
 
     json_response = JSON.parse(response.body)
-    assert_equal "updated_email@example.com", json_response["email"]
+    assert_equal "updated_email@example.com", json_response["data"]["attributes"]["email"]
   end
 
   test "should forbid update user" do

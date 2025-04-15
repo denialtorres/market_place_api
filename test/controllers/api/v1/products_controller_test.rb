@@ -21,7 +21,7 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     json_response = JSON.parse(response.body)
-    assert_equal Product.count, json_response.length
+    assert_equal Product.count, json_response["data"].size
   end
 
   test "should create product" do

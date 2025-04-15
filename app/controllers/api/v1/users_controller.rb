@@ -42,8 +42,4 @@ class Api::V1::UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
-  def check_owner
-    head :forbidden unless @user.id == current_user&.id
-  end
 end

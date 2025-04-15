@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [ :show, :create, :update, :destroy ]
       resources :tokens, only: [ :create ]
-      resources :products, only: [ :show, :index, :create ]
+      resources :products, only: [ :show, :index, :create, :update ]
     end
   end
 

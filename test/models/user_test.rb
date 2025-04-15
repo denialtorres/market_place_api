@@ -27,4 +27,10 @@ class UserTest < ActiveSupport::TestCase
     refute user.valid?
     assert_equal "has already been taken", user.errors[:email].first
   end
+
+  test "destroy user should delete associated products" do
+    assert_difference("Product.count", -1) do
+      users(:one).destroy
+    end
+  end
 end

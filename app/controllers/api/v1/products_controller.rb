@@ -5,7 +5,8 @@ class Api::V1::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    render json: ProductSerializer.new(@product).serializable_hash.to_json
+    options = { include: [ :user ] }
+    render json: ProductSerializer.new(@product, options).serializable_hash.to_json
   end
 
   def index

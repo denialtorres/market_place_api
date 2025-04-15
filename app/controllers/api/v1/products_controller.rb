@@ -1,7 +1,7 @@
 class Api::V1::ProductsController < ApplicationController
-  before_action :set_product, only: [ :show, :update ]
+  before_action :set_product, only: [ :show, :update, :destroy ]
   before_action :check_login, only: [ :create ]
-  before_action :check_owner, only: [ :update ]
+  before_action :check_owner, only: [ :update, :destroy ]
 
   def show
     @product = Product.find(params[:id])
@@ -29,6 +29,11 @@ class Api::V1::ProductsController < ApplicationController
     else
       render json: @product.errors, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @product.destroy
+    head :no_content
   end
 
   private

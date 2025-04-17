@@ -4,6 +4,13 @@ require "rails/test_help"
 
 module ActiveSupport
   class TestCase
+    def assert_json_response_is_paginated(json_response)
+      assert_not_nil json_response.dig(:links, :first)
+      assert_not_nil json_response.dig(:links, :last)
+      assert_not_nil json_response.dig(:links, :prev)
+      assert_not_nil json_response.dig(:links, :next)
+    end
+
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 

@@ -72,3 +72,5 @@ gem "faker", "~> 3.5"
 
 # serialize api response
 gem "jsonapi-serializer"
+
+gem "kaminari", "~> 1.2"

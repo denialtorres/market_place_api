@@ -17,4 +17,22 @@ class Product < ApplicationRecord
   }
 
   scope :recent, lambda { order(:updated_at) }
+
+  def self.search(params = {})
+    products = params[:product_ids].present? ? where(id: params[:product_ids]) : all
+
+    if params[:keyword]
+      products = products.filter_by_title(params[:keyword])
+    end
+
+    if params[:min_price]
+      products = products.above_or_equal_to_price(params[:min_price].to_f)
+    end
+
+    if params[:max_price]
+      products = products.below_or_equal_to_price(params[:max_price].to_f)
+    end
+
+    products
+  end
 end

@@ -22,9 +22,7 @@ class Order < ApplicationRecord
     end
   end
 
-  private
-
   def set_total!
-    self.total = self.products.map(&:price).sum
+    self.total = self.placements.map { |placement| placement.product.price * placement.quantity }.sum
   end
 end

@@ -76,3 +76,5 @@ gem "jsonapi-serializer"
 gem "kaminari", "~> 1.2"
 
 gem "bullet", "~> 8.0"
+
+gem "rack-cors", "~> 2.0"

@@ -6,6 +6,6 @@ class HomeController < ApplicationController
     @total_orders = Order.count
     @recent_products = Product.includes(:user).recent.limit(5)
 
-    render 'index'
+    render "index"
   end
 end

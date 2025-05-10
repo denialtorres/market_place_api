@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get 'docs', to: 'docs#index', defaults: { format: 'html' }
-      
+      get "docs", to: "docs#index", defaults: { format: "html" }
+
       defaults format: :json do
         resources :users, only: [ :show, :create, :update, :destroy ]
         resources :tokens, only: [ :create ]

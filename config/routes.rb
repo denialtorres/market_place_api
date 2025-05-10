@@ -10,12 +10,16 @@ Rails.application.routes.draw do
 
   # Api definition
 
-  namespace :api, defaults: { format: :json } do
+  namespace :api do
     namespace :v1 do
-      resources :users, only: [ :show, :create, :update, :destroy ]
-      resources :tokens, only: [ :create ]
-      resources :products
-      resources :orders, only: [ :index, :show, :create ]
+      get 'docs', to: 'docs#index', defaults: { format: 'html' }
+      
+      defaults format: :json do
+        resources :users, only: [ :show, :create, :update, :destroy ]
+        resources :tokens, only: [ :create ]
+        resources :products
+        resources :orders, only: [ :index, :show, :create ]
+      end
     end
   end
 

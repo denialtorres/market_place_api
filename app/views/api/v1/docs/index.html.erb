@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Market Place API Documentation</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #333;
+    }
+    
+    h1 {
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+    
+    .endpoint {
+      background: #f8f9fa;
+      border-radius: 5px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid #dee2e6;
+    }
+    
+    .endpoint h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    
+    .method {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-weight: bold;
+      margin-right: 5px;
+      font-size: 0.9em;
+    }
+    
+    .get { background: #61affe; color: white; }
+    .post { background: #49cc90; color: white; }
+    .put { background: #fca130; color: white; }
+    .delete { background: #f93e3e; color: white; }
+    .patch { background: #50e3c2; color: white; }
+    
+    .params {
+      background: #fff;
+      padding: 15px;
+      border-radius: 3px;
+      border: 1px solid #eee;
+    }
+    
+    .params h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    
+    pre {
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 3px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Market Place API Documentation</h1>
+  
+  <div class="introduction">
+    <p>Welcome to the Market Place API documentation. This API provides endpoints for managing users, products, and orders.</p>
+    <p>All endpoints are prefixed with <code>/api/v1</code></p>
+  </div>
+
+  <% @api_endpoints.each do |endpoint| %>
+    <div class="endpoint">
+      <h2><%= endpoint[:endpoint] %></h2>
+      <div class="methods">
+        <% endpoint[:methods].each do |method| %>
+          <span class="method <%= method.downcase %>"><%= method %></span>
+        <% end %>
+      </div>
+      
+      <p><%= endpoint[:description] %></p>
+      
+      <% if endpoint[:params].present? %>
+        <div class="params">
+          <h3>Parameters</h3>
+          <pre><%= JSON.pretty_generate(endpoint[:params]) %></pre>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <footer>
+    <p>For more information or support, please contact the API team.</p>
+  </footer>
+</body>
+</html>
